@@ -5,7 +5,7 @@ import os
 
 async def enviar_mensaje(bot, chat_id):
     ahora = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    mensaje = f"🔔 Mensaje recurrente enviado a las {ahora}"
+    mensaje = f"🔔 Mensaje recurrente creado por Mik y enviado a las {ahora}"
     await bot.send_message(chat_id=chat_id, text=mensaje)
     print(f"[{ahora}] Mensaje enviado correctamente.")
 
