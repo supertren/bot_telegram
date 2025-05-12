@@ -1,7 +1,6 @@
 import asyncio
 from telegram import Bot
 import datetime
-import argparse
 import os
 
 async def enviar_mensaje(bot, chat_id):
@@ -19,15 +18,13 @@ async def main(token, chat_id, intervalo):
         await asyncio.sleep(intervalo)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Bot recurrente en Railway")
-    parser.add_argument('--intervalo', type=float, default=float(os.getenv("INTERVALO", 60)), help='Intervalo en segundos')
-    args = parser.parse_args()
-
     token = os.getenv("TELEGRAM_TOKEN")
     chat_id = int(os.getenv("TELEGRAM_CHAT_ID"))
+    intervalo = float(os.getenv("INTERVALO", 60))  # <- Usa la variable de entorno INTERVALO, default 60
 
     if not token or not chat_id:
-        print("❌ Faltan las variables de entorno TELEGRAM_TOKEN y TELEGRAM_CHAT_ID")
+        print("❌ Faltan TELEGRAM_TOKEN o TELEGRAM_CHAT_ID en las variables de entorno")
         exit(1)
 
-    asyncio.run(main(token, chat_id, args.intervalo))
+    asyncio.run(main(token, chat_id, intervalo))
+
